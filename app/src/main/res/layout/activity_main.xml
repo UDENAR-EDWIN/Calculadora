@@ -10,15 +10,18 @@
     tools:context="com.example.edwin.calculadora.MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_res"
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="@color/Area" />
+        android:background="@color/Area"
+        android:textSize="50dp"
+        android:paddingTop="80dp"
+        android:textColor="#ffff"/>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/txt_res"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp"
@@ -35,23 +38,31 @@
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/ret"
+                android:tag="ret"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
+                android:tag="("
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/p2"
+                android:tag=")"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/mas"
+                android:tag="+"
+                android:onClick="concatenar"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"/>
         </TableRow>
@@ -64,24 +75,32 @@
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/siete"
+                android:tag="7"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/ocho"
+                android:tag="8"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/nueve"
+                android:tag="9"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/menos"
+                android:tag="-"
+                android:onClick="concatenar"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"/>
         </TableRow>
@@ -94,24 +113,32 @@
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/cuatro"
+                android:tag="4"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/cinco"
+                android:tag="5"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/seis"
+                android:tag="6"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/por"
+                android:tag="x"
+                android:onClick="concatenar"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"/>
         </TableRow>
@@ -124,24 +151,32 @@
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/uno"
+                android:tag="1"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/dos"
+                android:tag="2"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/tres"
+                android:tag="3"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/div"
+                android:tag="/"
+                android:onClick="concatenar"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"/>
         </TableRow>
@@ -153,16 +188,24 @@
 
             <ImageButton
                 android:background="@drawable/btn_circle"
+                android:src="@drawable/cero"
+                android:tag="0"
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
+                android:src="@drawable/sen"
+                android:tag="Sen("
+                android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
+                android:tag="="
+                android:onClick="grabar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
