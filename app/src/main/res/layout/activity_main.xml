@@ -39,21 +39,14 @@
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/ret"
                 android:tag="ret"
-                android:onClick="concatenar"
+                android:onClick="borrar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
-                android:tag="("
-                android:onClick="concatenar"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp" />
-            <ImageButton
-                android:background="@drawable/btn_circle"
-                android:src="@drawable/p2"
-                android:tag=")"
+                android:src="@drawable/menos"
+                android:tag="-"
                 android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
@@ -62,6 +55,14 @@
                 android:background="@drawable/btn_circle"
                 android:src="@drawable/mas"
                 android:tag="+"
+                android:onClick="concatenar"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp" />
+            <ImageButton
+                android:background="@drawable/btn_circle"
+                android:src="@drawable/por"
+                android:tag="x"
                 android:onClick="concatenar"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"/>
@@ -98,13 +99,13 @@
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
-                android:src="@drawable/menos"
-                android:tag="-"
+                android:src="@drawable/div"
+                android:tag="/"
                 android:onClick="concatenar"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"/>
         </TableRow>
-        <TableRow
+        <TableRow>
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -136,9 +137,8 @@
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
-                android:src="@drawable/por"
-                android:tag="x"
-                android:onClick="concatenar"
+                android:src="@drawable/igual"
+                android:onClick="grabar"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"/>
         </TableRow>
@@ -174,8 +174,8 @@
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
-                android:src="@drawable/div"
-                android:tag="/"
+                android:src="@drawable/cero"
+                android:tag="0"
                 android:onClick="concatenar"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"/>
@@ -188,24 +188,25 @@
 
             <ImageButton
                 android:background="@drawable/btn_circle"
-                android:src="@drawable/cero"
-                android:tag="0"
+                android:src="@drawable/clear"
+                android:tag="clean"
+                android:onClick="borrar"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp" />
+            <ImageButton
+                android:background="@drawable/btn_circle"
+                android:src="@drawable/p1"
+                android:tag="("
                 android:onClick="concatenar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
             <ImageButton
                 android:background="@drawable/btn_circle"
-                android:src="@drawable/sen"
-                android:tag="Sen("
+                android:src="@drawable/p2"
+                android:tag=")"
                 android:onClick="concatenar"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp" />
-            <ImageButton
-                android:background="@drawable/btn_circle"
-                android:tag="="
-                android:onClick="grabar"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp" />
