@@ -60,11 +60,14 @@ public class MainActivity extends AppCompatActivity {
 
         if(!resact.isEmpty()){
             char c1 = resact.charAt(resact.length() - 1);
-            if((isnumber(c1) || c1=='(' || c1==')') && (isnumber(c2) || (c2=='(' || c2==')')))res.setText(res.getText() + v.getTag().toString());
-            else if ((isopera(c1) && isnumber(c2)) || (isnumber(c1) && isopera(c2))) res.setText(res.getText() + v.getTag().toString());
+            String cadcon = res.getText() + v.getTag().toString();
+            if(isnumber(c1) && (isnumber(c2) || isopera(c2) || c2==')')) res.setText(cadcon);
+            else if(isopera(c1) && (isnumber(c2) || c2=='(')) res.setText(cadcon);
+            else if(c1=='(' && (isnumber(c2) || c2=='(' || c2==')')) res.setText(cadcon);
+            else if(c1==')' && (isopera(c2) || c2=='(' || c2==')')) res.setText(cadcon);
         }
         else {
-            if(!isopera(c2)) res.setText(res.getText() + v.getTag().toString());
+            if(isnumber(c2) || c2 == '(') res.setText(res.getText() + v.getTag().toString());
         }
     }
     //----------------------------------------------------------------------------------------------
@@ -108,13 +111,24 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     //COMPROBAR SI ES UNA OPERACION O NO
     public boolean validparent(String cad){
-        int p1=0;
-        int p2=0;
+        int abiertos=0;
+        int cerrados=0;
+        boolean ban = false;
         for (int i=0; i<cad.length(); i++){
-            if(cad.charAt(i) == '(') p1+=1;
-            if(cad.charAt(i) == ')') p2+=1;
+            if(cad.charAt(i) == '('){
+                ban=true;
+                abiertos +=1;
+            }
+            else if(cad.charAt(i) == ')'){
+                if(ban==true){
+                    abiertos -=1;
+                    cerrados +=1;
+                    ban = false;
+                }
+                else abiertos +=1;
+            }
         }
-        if(p1 == p2) return true;
+        if(abiertos==0) return true;
         else return false;
     }
     //----------------------------------------------------------------------------------------------
@@ -129,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             if(isopera(c1) || c1 == '(' || c1 == ')'){
                 if(!operadores.isEmpty()){
                     c2=operadores.peek();
-                    if(c1=='(' || c2=='(') operadores.push(c1);
+                    if(c1=='(' || c2=='(')operadores.push(c1);
                     else if(c1 == ')'){
                         cadres = vaciar_pila(cadres,operadores);
                         operadores.clear();
