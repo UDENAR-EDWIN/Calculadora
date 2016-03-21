@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class MainActivity extends AppCompatActivity {
     TextView res;
@@ -138,9 +140,10 @@ public class MainActivity extends AppCompatActivity {
         operadores = new Stack<>();
         Stack<String> resultado = new Stack<>();
         List<String> cadres = new ArrayList<String>();
-        char c1,c2,c3;
-        int tlist, n1, n2;
-        String rop;
+        char c1,c2;
+        float n1, n2;
+        int tlist;
+        String elm1, elm2, elm3, rop;
 
         for(int i=0; i<cad.length(); i++){
             c1=cad.charAt(i);
@@ -162,6 +165,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else operadores.push(c1);
             }
+            else if(!cadres.isEmpty()){
+                if(isnumber(cad.charAt(i-1))){
+                    String cd1 = cadres.get(cadres.size()-1) + c1;
+                    cadres.remove(cadres.size()-1);
+                    cadres.add(cd1);
+                }
+                else cadres.add(c1+"");
+            }
             else cadres.add(c1+"");
         }
 
@@ -170,15 +181,17 @@ public class MainActivity extends AppCompatActivity {
 
         for(int j=0; j<tlist+1; j++){
             if(resultado.size() >= 3){
-                c1 = cadres.get(j-1).charAt(0);
-                c2 = cadres.get(j-2).charAt(0);
-                c3 = cadres.get(j-3).charAt(0);
-                if(isopera(c1) && isnumber(c2) && isnumber(c3)){
-                    c1 = resultado.pop().charAt(0);
-                    n2 = Integer.parseInt(resultado.pop());
-                    n1 = Integer.parseInt(resultado.pop());
-                    rop = operar(n1,n2,c1);
+                elm1 = resultado.pop();
+                elm2 = resultado.pop();
+                elm3 = resultado.pop();
+                if(isopera(elm1.charAt(0)) && isnumber(elm2.charAt(0)) && isnumber(elm3.charAt(0))){
+                    rop = operar(Float.parseFloat(elm3),Float.parseFloat(elm2),elm1.charAt(0));
                     resultado.push(rop);
+                }
+                else {
+                    resultado.push(elm3);
+                    resultado.push(elm2);
+                    resultado.push(elm1);
                 }
             }
             if(j<tlist)resultado.push(cadres.get(j));
@@ -208,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //----------------------------------------------------------------------------------------------
     //OPERACIONES
-    public String operar(int num1, int num2, char simbolo){
+    public String operar(float num1, float num2, char simbolo){
         if(simbolo == '+') return (num1+num2)+"";
         if(simbolo == '-') return (num1-num2)+"";
         if(simbolo == 'x') return (num1*num2)+"";
