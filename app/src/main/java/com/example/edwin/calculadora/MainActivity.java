@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView res;
     char [] opera = {'+','-','x','/'};
     char [] number = {'0','1','2','3','4','5','6','7','8','9'};
+    Stack<Character> operadores;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     //CALCULAR LA CADENA INGRESADA
     public void calcular(String cad){
-        Stack<Character> operadores = new Stack<>();
+        operadores = new Stack<>();
         List<String> cadres = new ArrayList<String>();
         List<String> aux = new ArrayList<String>();
         char c1,c2;
@@ -144,10 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 if(!operadores.isEmpty()){
                     c2=operadores.peek();
                     if(c1=='(' || c2=='(')operadores.push(c1);
-                    else if(c1 == ')'){
-                        cadres = vaciar_pila(cadres,operadores);
-                        operadores.clear();
-                    }
+                    else if(c1 == ')')cadres = vaciar_pila(cadres);
                     else if(puntaje(c1) == puntaje(c2)){
                         cadres.add(c2+"");
                         operadores.pop();
@@ -155,8 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if(puntaje(c1) > puntaje(c2)) operadores.push(c1);
                     else if(puntaje(c1) < puntaje(c2)){
-                        cadres = vaciar_pila(cadres,operadores);
-                        operadores.clear();
+                        cadres = vaciar_pila(cadres);
                         operadores.push(c1);
                     }
                 }
@@ -165,19 +162,22 @@ public class MainActivity extends AppCompatActivity {
             else cadres.add(c1+"");
         }
 
-        aux = vaciar_pila(cadres,operadores);
+        aux = vaciar_pila(cadres);
         res.setText("");
-        for(int i=0; i<cadres.size(); i++){
-            res.setText(aux.get(i)+"\n");
-        }
+        String cadena = "";
+        for(int i=0; i<cadres.size(); i++)cadena += aux.get(i);
+        res.setText(cadena);
     }
     //----------------------------------------------------------------------------------------------
     //VACIAR LA PILA EN LA LISTA
-    public List<String> vaciar_pila(List<String> lista, Stack<Character> pila){
-        int tam = pila.size();
+    public List<String> vaciar_pila(List<String> lista){
+        int tam = operadores.size();
         for(int i=0; i<tam; i++){
-            lista.add(pila.peek()+"");
-            pila.pop();
+            if('(' != operadores.peek())lista.add(operadores.pop()+"");
+            else {
+                operadores.pop();
+                i=tam+1;
+            }
         }
         return lista;
     }
