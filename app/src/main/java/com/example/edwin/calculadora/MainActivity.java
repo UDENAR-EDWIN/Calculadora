@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {}
             calcular(res.getText().toString());
         }
+        else System.out.println("Error");
     }
     //----------------------------------------------------------------------------------------------
     //BORRAR TOD O SOLO UN CARACTER
@@ -116,22 +117,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean validparent(String cad){
         int abiertos=0;
         int cerrados=0;
-        boolean ban = false;
         for (int i=0; i<cad.length(); i++){
-            if(cad.charAt(i) == '('){
-                ban=true;
-                abiertos +=1;
-            }
+            if(cad.charAt(i) == '(')abiertos +=1;
             else if(cad.charAt(i) == ')'){
-                if(ban==true){
-                    abiertos -=1;
-                    cerrados +=1;
-                    ban = false;
-                }
-                else abiertos +=1;
+                if(abiertos>0)abiertos -=1;
+                else cerrados +=1;
             }
         }
-        if(abiertos==0) return true;
+        if(abiertos==0 && cerrados==0) return true;
         else return false;
     }
     //----------------------------------------------------------------------------------------------
