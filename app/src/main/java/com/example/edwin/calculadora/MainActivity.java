@@ -136,9 +136,12 @@ public class MainActivity extends AppCompatActivity {
     //CALCULAR LA CADENA INGRESADA
     public void calcular(String cad){
         operadores = new Stack<>();
+        Stack<String> resultado = new Stack<>();
         List<String> cadres = new ArrayList<String>();
-        List<String> aux = new ArrayList<String>();
-        char c1,c2;
+        char c1,c2,c3;
+        int tlist, n1, n2;
+        String rop;
+
         for(int i=0; i<cad.length(); i++){
             c1=cad.charAt(i);
             if(isopera(c1) || c1 == '(' || c1 == ')'){
@@ -162,11 +165,26 @@ public class MainActivity extends AppCompatActivity {
             else cadres.add(c1+"");
         }
 
-        aux = vaciar_pila(cadres);
+        cadres = vaciar_pila(cadres);
+        tlist = cadres.size();
+
+        for(int j=0; j<tlist+1; j++){
+            if(resultado.size() >= 3){
+                c1 = cadres.get(j-1).charAt(0);
+                c2 = cadres.get(j-2).charAt(0);
+                c3 = cadres.get(j-3).charAt(0);
+                if(isopera(c1) && isnumber(c2) && isnumber(c3)){
+                    c1 = resultado.pop().charAt(0);
+                    n2 = Integer.parseInt(resultado.pop());
+                    n1 = Integer.parseInt(resultado.pop());
+                    rop = operar(n1,n2,c1);
+                    resultado.push(rop);
+                }
+            }
+            if(j<tlist)resultado.push(cadres.get(j));
+        }
         res.setText("");
-        String cadena = "";
-        for(int i=0; i<cadres.size(); i++)cadena += aux.get(i);
-        res.setText(cadena);
+        res.setText(resultado.pop());
     }
     //----------------------------------------------------------------------------------------------
     //VACIAR LA PILA EN LA LISTA
@@ -187,5 +205,14 @@ public class MainActivity extends AppCompatActivity {
         if(simb == '+' || simb == '-') return 1;
         if(simb == 'x' || simb == '/') return 2;
         return 0;
+    }
+    //----------------------------------------------------------------------------------------------
+    //OPERACIONES
+    public String operar(int num1, int num2, char simbolo){
+        if(simbolo == '+') return (num1+num2)+"";
+        if(simbolo == '-') return (num1-num2)+"";
+        if(simbolo == 'x') return (num1*num2)+"";
+        if(simbolo == '/') return (num1/num2)+"";
+        return "";
     }
 }
