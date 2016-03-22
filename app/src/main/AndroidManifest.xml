@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Informacion" />
-        <activity android:name=".historial"></activity>
+        <activity android:name=".historial" />
+        <activity android:name=".Graficadora"></activity>
     </application>
 
 </manifest>
